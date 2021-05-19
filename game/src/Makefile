@@ -38,7 +38,7 @@ $(OUTPUT)/akm.rel: akm.z80 song.asm effects.asm
 
 $(OUTPUT)/$(TARGET).rom: $(OBJS) $(OUTPUT)/crt0.rel $(UBOX_LIBS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) --code-loc $(CODE) --data-loc $(DATA) $(OUTPUT)/crt0.rel $(OBJS) -o $(OUTPUT)/$(TARGET).ihx
-	hex2bin -e bin -p 00 -l $(ROM_MAX) $(OUTPUT)/$(TARGET).ihx
+	../../bin/hex2bin -e bin -p 00 -l $(ROM_MAX) $(OUTPUT)/$(TARGET).ihx
 	@cp $(OUTPUT)/$(TARGET).bin ../bin/$(TARGET).rom
 
 clean:

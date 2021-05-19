@@ -37,7 +37,8 @@ def apultra_compress(data):
         fd.flush()
 
         ap_name = fd.name + ".ap"
-        subprocess.call(["apultra", "-v", fd.name, ap_name], stdout=sys.stderr)
+        apultra_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "bin", "apultra")
+        subprocess.call([apultra_path, "-v", fd.name, ap_name], stdout=sys.stderr)
 
     with open(ap_name, "rb") as fd:
         out = fd.read()
