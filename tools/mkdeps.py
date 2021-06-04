@@ -5,6 +5,7 @@ import glob
 import os
 import sys
 import re
+import traceback
 from argparse import ArgumentParser
 
 __version__ = "0.1"
@@ -60,6 +61,7 @@ def main():
     new = '\n'.join(result)
 
     if new != old:
+        remove_list.append(args.deps)
         with open(args.deps, "wt") as fd:
             fd.write(new)
     else:
@@ -68,4 +70,16 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    remove_list = []
+
+    try:
+        main()
+    except Exception as e:
+        print("FATAL: %s\n***" % e, file=sys.stderr)
+        traceback.print_exc()
+
+        for filename in remove_list:
+            if os.path.exists(filename):
+                os.unlink(filename)
+
+        sys.exit(1) 
