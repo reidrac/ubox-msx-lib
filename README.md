@@ -1,3 +1,5 @@
+⚠️ **Important:** This project has moved to GitLab. For the latest code, see: https://gitlab.com/reidrac/ubox-msx-lib
+
 # ubox MSX lib
 
 This is a set of libraries and tools to make MSX games using the C programming
